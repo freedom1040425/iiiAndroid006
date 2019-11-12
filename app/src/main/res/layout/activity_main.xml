@@ -11,7 +11,7 @@
         android:id="@+id/colok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="10:10:10.87"
+        android:text="00:00:00.00"
         android:textSize="36sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -22,23 +22,23 @@
         android:orientation="horizontal"
         >
         <Button
-            android:id="@+id/btnleft"
+            android:id="@+id/btnLeft"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="clickleft"
+            android:onClick="clickLeft"
             />
         <Button
-            android:id="@+id/btnright"
+            android:id="@+id/btnRight"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:onClick="clickright"
+            android:onClick="clickRight"
             />
 
     </LinearLayout>
     <ListView
-        android:id="@+id/laplist"
+        android:id="@+id/lapList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
