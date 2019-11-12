@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private int i;
     private UIHandler uiHandler;
     private SimpleAdapter adapter;
-    private LinkedList<HashMap<String,String>> data;
+    private LinkedList<HashMap<String,String>>data;
     private String[] from = {"lapItem"};
     private int[] to = {R.id.lapItem};
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new MyTask(),0,10);
         //timer.schedule(new MyTask(),0,10);
 
-        initthisView();
+        initListView();
     }
 
-private void initthisView{
-        adapter = new SimpleAdapter(this,R.layout.item,from,to);
+private void initListView(){
+        data = new LinkedList<>();
+        adapter = new SimpleAdapter(this,data,R.layout.item,from,to);
         lapList.setAdapter(adapter);
 
     }
@@ -123,11 +124,17 @@ private void initthisView{
     private void doLap(){
 //在ListView 顯示數字
         //snackerbar(可與user互動) 與Toast(通知用)不同
+        HashMap<String,String> itemData = new HashMap<>();
+        itemData.put(from[0],clock.getText().toString());
+        data.add(0,itemData);
+        adapter.notifyDataSetChanged();
 
 
     }
     private void doReset(){
         i=0;
+        data.clear();  //清除是原來的物件實體
+        //data = new LinkedList<>(); 是另外一個物件 -->調節器 是用參照去配對
         uiHandler.sendEmptyMessage(0);
 
     }
