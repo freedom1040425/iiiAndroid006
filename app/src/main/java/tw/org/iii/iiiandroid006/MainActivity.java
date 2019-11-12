@@ -11,9 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.sql.Time;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -25,7 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private Timer timer;
     private int i;
     private UIHandler uiHandler;
+    private SimpleAdapter adapter;
+    private LinkedList<HashMap<String,String>> data;
+    private String[] from = {"lapItem"};
+    private int[] to = {R.id.lapItem};
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +52,14 @@ public class MainActivity extends AppCompatActivity {
         timer.schedule(new MyTask(),0,10);
         //timer.schedule(new MyTask(),0,10);
 
+        initthisView();
     }
 
+private void initthisView{
+        adapter = new SimpleAdapter(this,R.layout.item,from,to);
+        lapList.setAdapter(adapter);
+
+    }
     @Override
     public void finish(){
         if(timer!=null){
